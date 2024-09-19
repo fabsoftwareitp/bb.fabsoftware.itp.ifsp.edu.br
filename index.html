@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BB</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"> </script>
+
+</head>
+
+<body>
+
+    <canvas id="board"></canvas>
+
+    <div class="telaInicial">
+        <h1>Brick Breaker</h1>    
+
+        <button id="start" onclick="startGame()">Jogar</button>
+    </div>
+
+    <div class="telaDerrota">
+        <p>Voce Perdeu</p>
+        <p id="pontos"></p>
+        <button onclick="jogarNovamente()">Jogar Novamente</button>
+    </div>
+
+    <audio id="blocoQuebradoAudio" src="/sons/tijoloCerto.wav"></audio>
+
+
+</body>
+</html>
