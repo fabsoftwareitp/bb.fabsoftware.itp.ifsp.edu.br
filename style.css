@@ -1,13 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
     text-align: center;
     margin: 0;
     overflow: hidden;
+    font-family: "Press Start 2P", system-ui;
+    background-color: black;
+}
 
+img { width: 50px; margin-top: 5px;}
+
+.rodape p {
+    text-align: center;
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+.rodape {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#p1 {
+    color: orangered;
+    line-height: normal;
+    margin-bottom: 10px;
+}
+
+h1 {
+    margin-bottom: 100px;
 }
 
 #board {
-    background-color: black;
+    background-color: rgb(51, 50, 50,0.6);
+}
+
+.telaInicial, .telaVitoria {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 1.2rem;
+    color: white;
 }
 
 .telaDerrota {
@@ -16,58 +53,54 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    padding: 20px;
+    font-size: 1.2rem;
     color: white;
-    display: none;
-    font-size: 30px;
-
-    border-radius: 20px;
-    gap: 2rem;  
-    color: white;
-
-    height: 40%;
-    width: 40%;
-}
-
-.telaInicial {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    padding: 20px;
-    font-size: 30px;
-    color: white;
-
-    border-radius: 20px;
-    gap: 2rem;  
-
-    height: 40%;
-    width: 40%;
 }
 
 .telaDerrota button {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    padding: 10px 20px;
-    font-size: 20px;
-    background-color: rgb(255, 60, 0);
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-top: 25px;
-    width: 200px;
+    margin-top: 10px;
+    width: 230px;
+    font-size: 1.1rem;
 }
 
-  #start {
-    position: absolute;
-    transform: translate(-50%, -50%);
+.telaDerrota, .telaVitoria { display: none; }
+
+.container {
+    min-width: 60vw;
+    display: flex;
+    border-radius: 20px;
+    padding: 2rem 0;
+    gap: 1rem;
+    align-items: center;
+    flex-direction: column;
+  
+    color: white;
+    border: 2px solid white;
+
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .container p {
+    margin: 0;
+  }
+
+  input {
+    background-color: rgb(0, 0, 0);
+    padding: 0.5rem;
+    border: 2px solid white;
+    border-radius: 10px;
+    font-family: "Press Start 2P", system-ui;
+
+  }
+
+  button {
     padding: 10px 20px;
     font-size: 20px;
     background-color: rgb(255, 60, 0);
     color: white;
     border: none;
     cursor: pointer;
-    margin-top: 25px;
     width: 200px;
+    font-family: "Press Start 2P", system-ui;
   }
