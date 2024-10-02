@@ -15,14 +15,14 @@ let velBallX = 5; //5 normal
 let velBallY = -3; //-3 normal
 
 let blocoWidth = 50;
-let blocoHeight = 15; 
+let blocoHeight = 15;
 let blocosArray = [];
-let blocoColuna = 7;
-let blocoLinha = 3;
-let blocoMaxLinha = 8;
+let blocoColuna = 7; //7
+let blocoLinha = 3; //3
+let blocoMaxLinha = 8; //8
 let blocoCont;
 
-let blocoX = 20; 
+let blocoX = 20;
 let blocoY = 50;
 
 let pontos = 0;
@@ -49,12 +49,14 @@ let barrinha = {
     velocityX: velBarrinha
 };
 
-window.onload = function() {
+let contConfetti = 0;
+
+window.onload = function () {
     board = document.getElementById("board");
     context = board.getContext("2d");
 
     function resizeCanvas() {
-        boardWidth = window.innerWidth;
+        boardWidth = 500;
         boardHeight = window.innerHeight;
         board.width = boardWidth;
         board.height = boardHeight;
@@ -70,10 +72,10 @@ window.onload = function() {
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    // Atualiza a tela
+    // atualiza a tela
     requestAnimationFrame(update);
 
-    // Movimentar com base no toque
+    // movimentar com base no toque
     let touchStartX = 0;
     let isTouching = false;
 
@@ -96,7 +98,7 @@ window.onload = function() {
     function moveBarrinha(touchX) {
         let novaBarrinhaX = barrinha.x + (touchX - touchStartX);
 
-        // Deixar barrinha na tela
+        // deixar barrinha na tela
         if (!parede(novaBarrinhaX)) {
             barrinha.x = novaBarrinhaX;
         }
@@ -104,11 +106,27 @@ window.onload = function() {
         touchStartX = touchX;
     }
 
+    document.addEventListener("keydown", moveBarrinhaPC);
+
     criarBlocos();
 }
 
+function moveBarrinhaPC(e) {
+    if (e.code == "ArrowLeft") {
+        let novaBarrinhaX = barrinha.x - barrinha.velocityX;
+        if (!parede(novaBarrinhaX)) {
+            barrinha.x = novaBarrinhaX;
+        }
+    } else if (e.code == "ArrowRight") {
+        let novaBarrinhaX = barrinha.x + barrinha.velocityX;
+        if (!parede(novaBarrinhaX)) {
+            barrinha.x = novaBarrinhaX;
+        }
+    }
+}
+
 function startGame() {
-    start = true; 
+    start = true;
     document.querySelector(".telaInicial").style.display = "none"; // Oculta a tela inicial
 }
 
@@ -117,15 +135,15 @@ function update() {
 
     if (gameOver) {
         document.querySelector(".telaDerrota").style.display = "block";
-        document.getElementById("pontos").innerText = "Pontuação: " + pontos;
+        document.getElementById("pontos").innerText = "Pontuação Final: " + pontos;
         return;
-    } 
+    }
 
     if (!start) {
         document.querySelector(".telaInicio").style.display = "none";
         return;
     }
-    
+
     context.clearRect(0, 0, board.width, board.height);
 
     context.fillStyle = "orange";
@@ -147,7 +165,7 @@ function update() {
         return;
     }
 
-    // Detecta a colisão entre a bola e a barrinha 
+    //colisão entre a bola e a barrinha 
     if (topColisao(ball, barrinha) || botColisao(ball, barrinha)) {
         ball.velocityY *= -1;
         numCombo = 0;
@@ -240,14 +258,39 @@ function update() {
 
         if (blocoLinha == blocoMaxLinha) {
             context.clearRect(0, 0, board.width, board.height);
-            context.font = "50px sans-serif";
-            context.textAlign = "center";
-            context.textBaseline = "middle";
-            context.fillStyle = "white";
-            context.fillText("Voce Venceu!", boardWidth / 2, boardHeight / 2 - 25);
-            context.font = "30px sans-serif";
-            context.fillStyle = "red";
-            context.fillText("Pontuação: " + pontos, boardWidth / 2, boardHeight / 2 + 25);
+            document.querySelector(".telaVitoria").style.display = "block";
+            document.getElementById("pontos").innerText = "Pontuação Final: " + pontos;
+
+            if (contConfetti == 0) {
+                var end = Date.now() + (3 * 1000);
+
+                // go Buckeyes!
+                var colors = ['#bb0000', '#ffffff'];
+
+                (function frame() {
+                    confetti({
+                        particleCount: 2,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0 },
+                        colors: colors
+                    });
+                    confetti({
+                        particleCount: 2,
+                        angle: 120,
+                        spread: 55,
+                        origin: { x: 1 },
+                        colors: colors
+                    });
+
+                    if (Date.now() < end) {
+                        requestAnimationFrame(frame);
+                    }
+                }());
+
+                contConfetti++;
+            }
+
             return;
         } else {
             blocoLinha = Math.min(blocoLinha + 1, blocoMaxLinha);
@@ -256,12 +299,12 @@ function update() {
             ball.x = barrinha.x + barrinhaHeight / 2 - ball.width / 2;
             difceisNivel -= 1;
 
-            velBallX += 1; 
-            velBallY -= 1; 
+            velBallX += 1;
+            velBallY -= 1;
 
             criarBlocos();
         }
-    } 
+    }
 
     if (numCombo >= 2) {
         context.fillText(numCombo, 30, 60);
@@ -273,37 +316,37 @@ function update() {
 
 function detectarColisao(a, b) {
     return a.x < b.x + b.width &&
-           a.x + a.width > b.x &&
-           a.y < b.y + b.height &&
-           a.y + a.height > b.y;
+        a.x + a.width > b.x &&
+        a.y < b.y + b.height &&
+        a.y + a.height > b.y;
 }
 
 function topColisao(ball, bloco) {
-    return detectarColisao(ball, bloco) && 
-                           ball.velocityY > 0 && 
-                           ball.y + ball.height >= bloco.y && 
-                           ball.y <= bloco.y;
+    return detectarColisao(ball, bloco) &&
+        ball.velocityY > 0 &&
+        ball.y + ball.height >= bloco.y &&
+        ball.y <= bloco.y;
 }
 
 function botColisao(ball, bloco) {
-    return detectarColisao(ball, bloco) && 
-                           ball.velocityY < 0 && 
-                           ball.y <= bloco.y + bloco.height && 
-                           ball.y + ball.height >= bloco.y + bloco.height;
+    return detectarColisao(ball, bloco) &&
+        ball.velocityY < 0 &&
+        ball.y <= bloco.y + bloco.height &&
+        ball.y + ball.height >= bloco.y + bloco.height;
 }
 
 function leftColisao(ball, bloco) {
-    return detectarColisao(ball, bloco) && 
-                           ball.velocityX > 0 && 
-                           ball.x + ball.width >= bloco.x && 
-                           ball.x <= bloco.x;
+    return detectarColisao(ball, bloco) &&
+        ball.velocityX > 0 &&
+        ball.x + ball.width >= bloco.x &&
+        ball.x <= bloco.x;
 }
 
 function rightColisao(ball, bloco) {
-    return detectarColisao(ball, bloco) && 
-                           ball.velocityX < 0 && 
-                           ball.x <= bloco.x + bloco.width && 
-                           ball.x + ball.width >= bloco.x + bloco.width;
+    return detectarColisao(ball, bloco) &&
+        ball.velocityX < 0 &&
+        ball.x <= bloco.x + bloco.width &&
+        ball.x + ball.width >= bloco.x + bloco.width;
 }
 
 function parede(posicaoX) {
