@@ -5,27 +5,29 @@ let context;
 
 let numCombo = 0;
 
-let barrinhaWidth = 80; //80 normal
+let barrinhaWidth = 500; //80 normal
 let barrinhaHeight = 12;
 let velBarrinha = 18;
 
 let ballWidth = 10;
 let ballHeight = 10;
-let velBallX = 5; //5 normal
-let velBallY = -3; //-3 normal
+let velBallX = 12; //5 normal
+let velBallY = -10; //-3 normal
 
 let blocoWidth = 50;
 let blocoHeight = 15;
 let blocosArray = [];
-let blocoColuna = 7; //7
-let blocoLinha = 3; //3
-let blocoMaxLinha = 8; //8
+let blocoColuna = 1; //7
+let blocoLinha = 1; //3
+let blocoMaxLinha = 1; //8
 let blocoCont;
 
 let blocoX = 20;
 let blocoY = 50;
 
+let nomeJogador;
 let pontos = 0;
+
 let gameOver = false;
 
 let start = false;
@@ -50,6 +52,9 @@ let barrinha = {
 };
 
 let contConfetti = 0;
+
+
+
 
 window.onload = function () {
     board = document.getElementById("board");
@@ -136,6 +141,7 @@ function update() {
     if (gameOver) {
         document.querySelector(".telaDerrota").style.display = "block";
         document.getElementById("pontos").innerText = "Pontuação Final: " + pontos;
+        ranking();
         return;
     }
 
@@ -260,6 +266,10 @@ function update() {
             context.clearRect(0, 0, board.width, board.height);
             document.querySelector(".telaVitoria").style.display = "block";
             document.getElementById("pontos").innerText = "Pontuação Final: " + pontos;
+            ranking();
+
+            
+
 
             if (contConfetti == 0) {
                 var end = Date.now() + (3 * 1000);
@@ -423,4 +433,13 @@ function jogarNovamente() {
     criarBlocos();
 
     document.querySelector(".telaDerrota").style.display = "none";
+    document.querySelector(".telaVitoria").style.display = "none";
 }
+
+function ranking() {
+    nomeJogador = document.querySelector("#name").value;
+    console.log(nomeJogador);
+    console.log(pontos);
+}
+  
+  
