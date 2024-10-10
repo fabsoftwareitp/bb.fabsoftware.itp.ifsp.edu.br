@@ -5,7 +5,7 @@ let context;
 
 let numCombo = 0;
 
-let barrinhaWidth = 80; //80 normal
+let barrinhaWidth = 430; //80 normal
 let barrinhaHeight = 12;
 let velBarrinha = 18;
 
@@ -17,9 +17,9 @@ let velBallY = -3; //-3 normal
 let blocoWidth = 50;
 let blocoHeight = 15;
 let blocosArray = [];
-let blocoColuna = 7;
-let blocoLinha = 3;
-let blocoMaxLinha = 8;
+let blocoColuna = 7; //7
+let blocoLinha = 3; //3
+let blocoMaxLinha = 8; //8
 let blocoCont;
 
 let blocoX = 20;
@@ -31,6 +31,8 @@ let gameOver = false;
 let start = false;
 
 let difceisNivel = 6;
+
+let contConfetti = 0;
 
 let ball = {
     x: 0,
@@ -268,6 +270,32 @@ function update() {
             context.clearRect(0, 0, board.width, board.height);
             document.querySelector(".telaVitoria").style.display = "block";
             document.getElementById("pontos").innerText = "Pontuação Final: " + pontos;
+
+            if (contConfetti == 0) {
+                var end = Date.now() + (3 * 1000);
+                // go Buckeyes!
+                var colors = ['#bb0000', '#ffffff'];
+                (function frame() {
+                    confetti({
+                        particleCount: 2,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0 },
+                        colors: colors
+                    });
+                    confetti({
+                        particleCount: 2,
+                        angle: 120,
+                        spread: 55,
+                        origin: { x: 1 },
+                        colors: colors
+                    });
+                    if (Date.now() < end) {
+                        requestAnimationFrame(frame);
+                    }
+                }());
+                contConfetti++;
+            }
             return;
         } else {
             blocoLinha = Math.min(blocoLinha + 1, blocoMaxLinha);
@@ -398,6 +426,8 @@ function jogarNovamente() {
     criarBlocos();
 
     document.querySelector(".telaDerrota").style.display = "none";
+    document.querySelector(".telaVitoria").style.display = "none"; 
+
 }
 
 function ajustarTamanhoBlocos() {
@@ -405,7 +435,7 @@ function ajustarTamanhoBlocos() {
     const proporcaoWidth = boardWidth / baseWidth;
 
     blocoWidth = Math.max(50 * proporcaoWidth, 20); // limite mínimo
-    ballWidth = Math.max(10 * proporcaoWidth, 5); // limite mínimo
+    ballWidth = Math.max(10 * proporcaoWidth, 5); 
 
     criarBlocos();
 }
