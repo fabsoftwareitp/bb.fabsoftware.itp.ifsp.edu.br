@@ -17,9 +17,9 @@ let velBallY = -3; //-3 normal
 let blocoWidth = 50;
 let blocoHeight = 15;
 let blocosArray = [];
-let blocoColuna = 7; //7
-let blocoLinha = 3; //3
-let blocoMaxLinha = 8; //8
+let blocoColuna = 7;
+let blocoLinha = 3;
+let blocoMaxLinha = 8;
 let blocoCont;
 
 let blocoX = 20;
@@ -49,33 +49,41 @@ let barrinha = {
     velocityX: velBarrinha
 };
 
-let contConfetti = 0;
-
 window.onload = function () {
     board = document.getElementById("board");
     context = board.getContext("2d");
 
     function resizeCanvas() {
-        boardWidth = 500;
+        // Define a largura e altura máximas
+        const maxWidth = 430;
+
         boardHeight = window.innerHeight;
+    
+        // Usa a largura e altura da janela, limitadas ao máximo
+        boardWidth = Math.min(window.innerWidth, maxWidth);
+        
         board.width = boardWidth;
         board.height = boardHeight;
-
-        // posição da barrinha
+    
+        // Atualiza a posição da barrinha
+        barrinha.width = Math.max(barrinhaWidth, boardWidth * 0.2); // 20% da largura da tela
         barrinha.x = boardWidth / 2 - barrinhaWidth / 2;
         barrinha.y = boardHeight - barrinhaHeight - 50; // distância entre a barrinha e o fim da tela 
-
+    
         ball.y = barrinha.y - ball.width;
         ball.x = barrinha.x + barrinhaHeight / 2 - ball.width / 2;
+    
+        // Ajusta o tamanho dos blocos e da bola
+        ajustarTamanhoBlocos();
     }
 
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    // atualiza a tela
+    // Atualiza a tela
     requestAnimationFrame(update);
 
-    // movimentar com base no toque
+    // Movimentar com base no toque
     let touchStartX = 0;
     let isTouching = false;
 
@@ -98,7 +106,7 @@ window.onload = function () {
     function moveBarrinha(touchX) {
         let novaBarrinhaX = barrinha.x + (touchX - touchStartX);
 
-        // deixar barrinha na tela
+        // Deixar barrinha na tela
         if (!parede(novaBarrinhaX)) {
             barrinha.x = novaBarrinhaX;
         }
@@ -165,7 +173,7 @@ function update() {
         return;
     }
 
-    //colisão entre a bola e a barrinha 
+    // Detecta a colisão entre a bola e a barrinha 
     if (topColisao(ball, barrinha) || botColisao(ball, barrinha)) {
         ball.velocityY *= -1;
         numCombo = 0;
@@ -260,37 +268,6 @@ function update() {
             context.clearRect(0, 0, board.width, board.height);
             document.querySelector(".telaVitoria").style.display = "block";
             document.getElementById("pontos").innerText = "Pontuação Final: " + pontos;
-
-            if (contConfetti == 0) {
-                var end = Date.now() + (3 * 1000);
-
-                // go Buckeyes!
-                var colors = ['#bb0000', '#ffffff'];
-
-                (function frame() {
-                    confetti({
-                        particleCount: 2,
-                        angle: 60,
-                        spread: 55,
-                        origin: { x: 0 },
-                        colors: colors
-                    });
-                    confetti({
-                        particleCount: 2,
-                        angle: 120,
-                        spread: 55,
-                        origin: { x: 1 },
-                        colors: colors
-                    });
-
-                    if (Date.now() < end) {
-                        requestAnimationFrame(frame);
-                    }
-                }());
-
-                contConfetti++;
-            }
-
             return;
         } else {
             blocoLinha = Math.min(blocoLinha + 1, blocoMaxLinha);
@@ -302,7 +279,7 @@ function update() {
             velBallX += 1;
             velBallY -= 1;
 
-            criarBlocos();
+            criarBlocos();   
         }
     }
 
@@ -388,8 +365,6 @@ function criarBlocos() {
     blocoCont = blocosArray.length;
 }
 
-
-
 function jogarNovamente() {
     gameOver = false;
 
@@ -423,4 +398,14 @@ function jogarNovamente() {
     criarBlocos();
 
     document.querySelector(".telaDerrota").style.display = "none";
+}
+
+function ajustarTamanhoBlocos() {
+    const baseWidth = 430; // largura base
+    const proporcaoWidth = boardWidth / baseWidth;
+
+    blocoWidth = Math.max(50 * proporcaoWidth, 20); // limite mínimo
+    ballWidth = Math.max(10 * proporcaoWidth, 5); // limite mínimo
+
+    criarBlocos();
 }
