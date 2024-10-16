@@ -11,13 +11,13 @@ let velBarrinha = 18;
 
 let ballWidth = 10;
 let ballHeight = 10;
-let velBallX = 5; //5 normal
-let velBallY = -3; //-3 normal
+let velBallX = 6; //5 normal
+let velBallY = -4; //-3 normal
 
 let blocoWidth = 50;
 let blocoHeight = 15;
 let blocosArray = [];
-let blocoColuna = 7; //7
+let blocoColuna = 7; 7
 let blocoLinha = 3; //3
 let blocoMaxLinha = 8; //8
 let blocoCont;
@@ -103,7 +103,7 @@ window.onload = function () {
     function moveBarrinha(touchX) {
         let novaBarrinhaX = barrinha.x + (touchX - touchStartX);
 
-        // Deixar barrinha na tela
+        // deixar barrinha na tela
         if (!parede(novaBarrinhaX)) {
             barrinha.x = novaBarrinhaX;
         }
@@ -174,6 +174,11 @@ function update() {
         context.clearRect(0, 0, board.width, board.height);
         return;
     }  
+
+    if (topColisaoCanto(ball, boardWidth) || bottomColisaoCanto(ball, boardHeight)) {
+        ball.velocityY *= 1;
+        ball.velocityX *= -1;
+    }
 
     // detecta a colisão entre a bola e a barrinha
     if (topColisao(ball, barrinha) || botColisao(ball, barrinha)) {
@@ -270,7 +275,7 @@ function update() {
         if (blocoLinha == blocoMaxLinha) {
             context.clearRect(0, 0, board.width, board.height);
             document.querySelector(".telaVitoria").style.display = "block";
-            document.getElementById("pontos").innerText = "Pontuação Final: " + pontos;
+            document.getElementById("pontosVitoria").innerText = "Pontuação Final: " + pontos;
             document.querySelector(".barra1").style.display = "none";
             document.querySelector(".barra2").style.display = "none";
 
@@ -336,6 +341,14 @@ function update() {
     context.fillText(pontos, 10, 25);
     context.font = "10px sans-serif";
     context.fillText("Pontos", 15, 40);
+}
+
+function topColisaoCanto(ball, boardWidth) {
+    return (ball.y <= 0 && (ball.x <= 0 || (ball.x + ball.width) >= boardWidth));
+}
+
+function bottomColisaoCanto(ball, boardHeight) {
+    return (ball.y + ball.height >= boardHeight && (ball.x <= 0 || (ball.x + ball.width) >= boardWidth));
 }
 
 function detectarColisao(a, b) {
@@ -447,6 +460,7 @@ function jogarNovamente() {
 
     document.querySelector(".telaDerrota").style.display = "none";
     document.querySelector(".telaVitoria").style.display = "none";
+
     barras();
 }
 
