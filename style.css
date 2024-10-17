@@ -41,7 +41,7 @@ h1 {
     background-color: rgba(0, 0, 0, 0.6);
 }
 
-.telaInicial, .telaVitoria {
+.telaInicial, .telaFinal {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -51,23 +51,13 @@ h1 {
     color: white;
 }
 
-.telaDerrota {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-size: 1.2rem;
-    color: white;
-}
-
-.telaDerrota button {
+.telaFinal button {
     margin-top: 10px;
     width: 230px;
     font-size: 1.1rem;
 }
 
-.telaDerrota, .telaVitoria { display: none; }
+.telaFinal { display: none; }
 
 .container {
     min-width: 60vw;
@@ -126,3 +116,31 @@ h1 {
     background-color: white;
     display: none;
   }
+
+  .ranking_container {
+      min-width: 80vw;
+      display: flex;
+      border-radius: 20px;
+      padding: 2rem 0;
+      gap: 2rem;
+      align-items: center;
+      flex-direction: column;
+    
+      background-color: rgb(0, 0, 0);
+      color: white;
+      border-color: 2px solid white;
+
+      font-size: 1rem;
+      text-align: center;
+  }
+
+  #mensagem {
+    color: rgb(255, 60, 0);
+    font-size: 2rem;
+  }
+
+#error-msg {
+  font-size: 0.8rem;
+  color: rgb(255, 60, 0);
+  display: none;
+}
