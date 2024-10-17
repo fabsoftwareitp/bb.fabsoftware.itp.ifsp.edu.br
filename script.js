@@ -11,8 +11,8 @@ let velBarrinha = 18;
 
 let ballWidth = 10;
 let ballHeight = 10;
-let velBallX = 10; //5 normal
-let velBallY = -8; //-3 normal
+let velBallX = 6; //5 normal
+let velBallY = -4; //-3 normal
 
 let blocoWidth = 50;
 let blocoHeight = 15;
@@ -103,7 +103,7 @@ window.onload = function () {
     function moveBarrinha(touchX) {
         let novaBarrinhaX = barrinha.x + (touchX - touchStartX);
 
-        // Deixar barrinha na tela
+        // deixar barrinha na tela
         if (!parede(novaBarrinhaX)) {
             barrinha.x = novaBarrinhaX;
         }
@@ -144,8 +144,24 @@ function startGame() {
     document.querySelector(".telaInicial").style.display = "none"; // oculta a tela inicial
     barras();
 
+    startButton.addEventListener('click', () =>{
+        console.log("aSDASDadsa");
+        const name = input.value;
+        
+        if (!name) {
+        alert('Insira um nome');
+        return;
+        }
+        
+        if (name.length > 5) {
+        alert('O nome só pode ter até 5 caracteres');
+        return;
+        }
 
-}
+        start = true;
+        document.querySelector(".telaInicial").style.display = "none"; // oculta a tela inicial
+        barras();
+    })
 
 let gameId;
 
@@ -190,6 +206,11 @@ function update() {
         context.clearRect(0, 0, board.width, board.height);
         return;
     }  
+
+    if (topColisaoCanto(ball, boardWidth) || bottomColisaoCanto(ball, boardHeight)) {
+        ball.velocityY *= 1;
+        ball.velocityX *= -1;
+    }
 
     // detecta a colisão entre a bola e a barrinha
     if (topColisao(ball, barrinha) || botColisao(ball, barrinha)) {
@@ -285,6 +306,7 @@ function update() {
 
         if (blocoLinha == blocoMaxLinha) {
             context.clearRect(0, 0, board.width, board.height);
+          
             document.querySelector(".telaFinal").style.display = "block";
             document.getElementById("pontos").innerText = "Pontuação Final: " + pontos;
             document.getElementById("mensagem").innerText = "Você venceu";
@@ -336,7 +358,7 @@ function update() {
 
             setTimeout(() => {
                 document.querySelector(".niveis").style.display = "none";
-            }, 500);
+            }, 1000);
 
             criarBlocos();
         }
@@ -356,6 +378,14 @@ function update() {
     context.fillText(pontos, 10, 25);
     context.font = "10px sans-serif";
     context.fillText("Pontos", 15, 40);
+}
+
+function topColisaoCanto(ball, boardWidth) {
+    return (ball.y <= 0 && (ball.x <= 0 || (ball.x + ball.width) >= boardWidth));
+}
+
+function bottomColisaoCanto(ball, boardHeight) {
+    return (ball.y + ball.height >= boardHeight && (ball.x <= 0 || (ball.x + ball.width) >= boardWidth));
 }
 
 function detectarColisao(a, b) {
@@ -467,6 +497,7 @@ function jogarNovamente() {
 
     //escondendo as tela
     document.querySelector(".telaFinal").style.display = "none";
+  
     barras();
     update();
 }
