@@ -130,6 +130,8 @@ function moveBarrinhaPC(e) {
     }
 }
 
+let startButton = document.querySelector('#start');
+let input = document.querySelector('#name');
 function startGame() {
     document.querySelector("#error-msg").style.display = "none";
     const nomeJogador = document.querySelector("#name").value;
@@ -163,6 +165,7 @@ function startGame() {
         barras();
     })
 
+}
 let gameId;
 
 function update() {
