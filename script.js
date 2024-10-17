@@ -17,7 +17,7 @@ let velBallY = -4; //-3 normal
 let blocoWidth = 50;
 let blocoHeight = 15;
 let blocosArray = [];
-let blocoColuna = 7; 7
+let blocoColuna = 7; //7
 let blocoLinha = 3; //3
 let blocoMaxLinha = 8; //8
 let blocoCont;
@@ -130,13 +130,27 @@ function moveBarrinhaPC(e) {
     }
 }
 
-function startGame() {
-    start = true;
-    document.querySelector(".telaInicial").style.display = "none"; // oculta a tela inicial
-    barras();
+let startButton = document.querySelector('#startButton');
+    let input = document.querySelector('#name');
 
+    startButton.addEventListener('click', () =>{
+        console.log("aSDASDadsa");
+        const name = input.value;
+        
+        if (!name) {
+        alert('Insira um nome');
+        return;
+        }
+        
+        if (name.length > 5) {
+        alert('O nome só pode ter até 5 caracteres');
+        return;
+        }
 
-}
+        start = true;
+        document.querySelector(".telaInicial").style.display = "none"; // oculta a tela inicial
+        barras();
+    })
 
 function update() {
     requestAnimationFrame(update);
@@ -321,7 +335,7 @@ function update() {
 
             setTimeout(() => {
                 document.querySelector(".niveis").style.display = "none";
-            }, 500);
+            }, 1000);
 
             criarBlocos();
         }
