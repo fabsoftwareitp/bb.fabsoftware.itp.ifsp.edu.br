@@ -141,8 +141,9 @@ function startGame() {
 function update() {
     requestAnimationFrame(update);
 
-    if (gameOver) {
-        document.querySelector(".telaDerrota").style.display = "block";
+    if (gameOver) { //quando perder
+        document.querySelector(".telaFinal").style.display = "block";
+        document.getElementById("mensagem").innerText = "Você perdeu!";
         document.getElementById("pontos").innerText = "Pontuação Final: " + pontos;
         barras();
         return;
@@ -269,8 +270,9 @@ function update() {
 
         if (blocoLinha == blocoMaxLinha) {
             context.clearRect(0, 0, board.width, board.height);
-            document.querySelector(".telaVitoria").style.display = "block";
+            document.querySelector(".telaFinal").style.display = "block";
             document.getElementById("pontos").innerText = "Pontuação Final: " + pontos;
+            document.getElementById("mensagem").innerText = "Você venceu";
             document.querySelector(".barra1").style.display = "none";
             document.querySelector(".barra2").style.display = "none";
 
@@ -445,8 +447,8 @@ function jogarNovamente() {
     numCombo = 0;
     criarBlocos();
 
-    document.querySelector(".telaDerrota").style.display = "none";
-    document.querySelector(".telaVitoria").style.display = "none";
+    //escondendo as tela
+    document.querySelector(".telaFinal").style.display = "none";
     barras();
 }
 
