@@ -6,9 +6,6 @@
     <title>BB</title>
 
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"> </script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-    <script src="ranking.js"> </script>
 </head>
 
 <body>
@@ -23,6 +20,7 @@
         <div class="container" id="form">
             <p>Informe um Nome</p>
             <input type="text" id="name" placeholder="Nome">
+            <p id="error-msg">O nome já existe, insira um novo</p>
             <button id="start" onclick="startGame()">Jogar</button>
           </div>
 
@@ -44,6 +42,8 @@
 
         <h2>Ranking:</h2>
         <ul class="rankingList ranking_container" ></ul>
+
+
     </div>
 
 
@@ -53,5 +53,8 @@
         <p id="indicadorNivel"></p>
     </div>
 
+    <script src="ranking.js"> </script>
+    <script src="script.js"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </body>
 </html>

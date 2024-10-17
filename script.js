@@ -5,21 +5,21 @@ let context;
 
 let numCombo = 0;
 
-let barrinhaWidth = 80; //80 normal
+let barrinhaWidth = 200; //80 normal
 let barrinhaHeight = 12;
 let velBarrinha = 18;
 
 let ballWidth = 10;
 let ballHeight = 10;
-let velBallX = 5; //5 normal
-let velBallY = -3; //-3 normal
+let velBallX = 10; //5 normal
+let velBallY = -8; //-3 normal
 
 let blocoWidth = 50;
 let blocoHeight = 15;
 let blocosArray = [];
-let blocoColuna = 7; //7
-let blocoLinha = 3; //3
-let blocoMaxLinha = 8; //8
+let blocoColuna = 1; //7
+let blocoLinha = 1; //3
+let blocoMaxLinha = 1; //8
 let blocoCont;
 
 let blocoX = 20;
@@ -131,6 +131,15 @@ function moveBarrinhaPC(e) {
 }
 
 function startGame() {
+    document.querySelector("#error-msg").style.display = "none";
+    const nomeJogador = document.querySelector("#name").value;
+    for (const element of rankingData) {
+        if(element.name == nomeJogador) {
+            document.querySelector("#error-msg").style.display = "block";
+            return;
+        }
+    }
+
     start = true;
     document.querySelector(".telaInicial").style.display = "none"; // oculta a tela inicial
     barras();
@@ -138,14 +147,20 @@ function startGame() {
 
 }
 
+let gameId;
+
 function update() {
-    requestAnimationFrame(update);
+    gameId = requestAnimationFrame(update);
 
     if (gameOver) { //quando perder
         document.querySelector(".telaFinal").style.display = "block";
         document.getElementById("mensagem").innerText = "Você perdeu!";
         document.getElementById("pontos").innerText = "Pontuação Final: " + pontos;
         barras();
+
+        salvarPontuacaoRanking();
+
+        cancelAnimationFrame(gameId);
         return;
     }
 
@@ -275,6 +290,9 @@ function update() {
             document.getElementById("mensagem").innerText = "Você venceu";
             document.querySelector(".barra1").style.display = "none";
             document.querySelector(".barra2").style.display = "none";
+            cancelAnimationFrame(gameId);
+         
+            salvarPontuacaoRanking();
 
 
             if (contConfetti == 0) {
@@ -450,6 +468,7 @@ function jogarNovamente() {
     //escondendo as tela
     document.querySelector(".telaFinal").style.display = "none";
     barras();
+    update();
 }
 
 function ajustarTamanhoBlocos() {
@@ -478,4 +497,22 @@ function barras() {
         document.querySelector(".barra1").style.display = "none";
         document.querySelector(".barra2").style.display = "none";
     }
+}
+
+
+async function salvarPontuacaoRanking() {
+    const nomeJogador = document.querySelector("#name").value;
+
+    const fetchResponse = await fetch('https://ranking.fabsoftware.itp.ifsp.edu.br/ranking', {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({name: nomeJogador, score: pontos, game: 'bb'})
+    });
+
+    const data = await fetchResponse.json();
+    createRankingList(data);
+
 }
