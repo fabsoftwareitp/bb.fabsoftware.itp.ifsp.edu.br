@@ -17,9 +17,9 @@ let velBallY = -4; //-3 normal
 let blocoWidth = 50;
 let blocoHeight = 15;
 let blocosArray = [];
-let blocoColuna = 1; //7
-let blocoLinha = 1; //3
-let blocoMaxLinha = 1; //8
+let blocoColuna = 7; //7
+let blocoLinha = 3; //3
+let blocoMaxLinha = 8; //8
 let blocoCont;
 
 let blocoX = 20;
