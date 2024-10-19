@@ -5,7 +5,7 @@ let context;
 
 let numCombo = 0;
 
-let barrinhaWidth = 200; //80 normal
+let barrinhaWidth = 80; //80 normal
 let barrinhaHeight = 12;
 let velBarrinha = 18;
 
