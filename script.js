@@ -5,7 +5,7 @@ let context;
 
 let numCombo = 0;
 
-let barrinhaWidth = 200; //80 normal
+let barrinhaWidth = 80; //80 normal
 let barrinhaHeight = 12;
 let velBarrinha = 18;
 
@@ -17,9 +17,9 @@ let velBallY = -4; //-3 normal
 let blocoWidth = 50;
 let blocoHeight = 15;
 let blocosArray = [];
-let blocoColuna = 1; //7
-let blocoLinha = 1; //3
-let blocoMaxLinha = 1; //8
+let blocoColuna = 7; //7
+let blocoLinha = 3; //3
+let blocoMaxLinha = 8; //8
 let blocoCont;
 
 let blocoX = 20;
@@ -130,6 +130,8 @@ function moveBarrinhaPC(e) {
     }
 }
 
+let startButton = document.querySelector('#start');
+let input = document.querySelector('#name');
 function startGame() {
     document.querySelector("#error-msg").style.display = "none";
     const nomeJogador = document.querySelector("#name").value;
@@ -163,6 +165,7 @@ function startGame() {
         barras();
     })
 
+}
 let gameId;
 
 function update() {
