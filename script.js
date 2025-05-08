@@ -132,7 +132,6 @@ function moveBarrinhaPC(e) {
 let startButton = document.querySelector('#start');
 do {
     let input = document.querySelector('#name');
-
     startButton.addEventListener('click', () => {
         console.log("aSDASDadsa");
         const name = input.value;
@@ -144,15 +143,15 @@ do {
             }
         }
         if (!name) {
-            document.querySelector("#error-msg4").style.display = "block";
+            document.querySelector("#error-msg3").style.display = "block";
             return;
         }
 
         if (name.length > 5) {
-            document.querySelector("#error-msg3").style.display = "block";
+            document.querySelector("#error-msg2").style.display = "block";
             return;
         }
-        if (name.length < 5) {
+        if (name.length <= 5) {
             start = true;
             document.querySelector(".telaInicial").style.display = "none"; // oculta a tela inicial
             barras();
