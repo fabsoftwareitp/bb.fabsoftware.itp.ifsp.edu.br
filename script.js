@@ -129,31 +129,31 @@ function moveBarrinhaPC(e) {
         }
     }
 }
-    let startButton = document.querySelector('#start');
-do{ 
+let startButton = document.querySelector('#start');
+do {
     let input = document.querySelector('#name');
 
-    startButton.addEventListener('click', () =>{
+    startButton.addEventListener('click', () => {
         console.log("aSDASDadsa");
         const name = input.value;
-    
+
         if (!name) {
-        alert('Insira um nome');
-        return;
+            alert('Insira um nome');
+            return;
         }
-        
+
         if (name.length > 5) {
-        alert('O nome só pode ter até 5 caracteres');
-        return;
+            alert('O nome só pode ter até 5 caracteres');
+            return;
         }
-        if (name.length <  5){
+        if (name.length < 5) {
             start = true;
+            document.querySelector(".telaInicial").style.display = "none"; // oculta a tela inicial
+            barras();
+            return;
         }
     })
-}while(start)
-
-    document.querySelector(".telaInicial").style.display = "none"; // oculta a tela inicial
-    barras();
+} while (start)
 
 function startGame() {
     document.querySelector(".telaInicial").style.display = "none"; // oculta a tela inicial
@@ -161,7 +161,7 @@ function startGame() {
     document.querySelector("#error-msg").style.display = "none";
     const nomeJogador = document.querySelector("#name").value;
     for (const element of rankingData) {
-        if(element.name == nomeJogador) {
+        if (element.name == nomeJogador) {
             document.querySelector("#error-msg").style.display = "block";
             return;
         }
@@ -210,7 +210,7 @@ function update() {
         gameOver = true;
         context.clearRect(0, 0, board.width, board.height);
         return;
-    }  
+    }
 
     if (topColisaoCanto(ball, boardWidth) || bottomColisaoCanto(ball, boardHeight)) {
         ball.velocityY *= 1;
@@ -311,14 +311,14 @@ function update() {
 
         if (blocoLinha == blocoMaxLinha) {
             context.clearRect(0, 0, board.width, board.height);
-          
+
             document.querySelector(".telaFinal").style.display = "block";
             document.getElementById("pontos").innerText = "Pontuação Final: " + pontos;
             document.getElementById("mensagem").innerText = "Você venceu";
             document.querySelector(".barra1").style.display = "none";
             document.querySelector(".barra2").style.display = "none";
             cancelAnimationFrame(gameId);
-         
+
             salvarPontuacaoRanking();
 
 
@@ -502,13 +502,13 @@ function jogarNovamente() {
 
     //escondendo as tela
     document.querySelector(".telaFinal").style.display = "none";
-  
+
     barras();
     update();
 }
 
 function ajustarTamanhoBlocos() {
-    let larguraTela = window.innerWidth ;
+    let larguraTela = window.innerWidth;
 
     if (larguraTela < 430) {
         blocoWidth = Math.min((larguraTela + 40) / 10, 50); //+40 para testes
@@ -542,10 +542,10 @@ async function salvarPontuacaoRanking() {
     const fetchResponse = await fetch('https://ranking.fabsoftware.itp.ifsp.edu.br/ranking', {
         method: "POST",
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify({name: nomeJogador, score: pontos, game: 'bb'})
+        body: JSON.stringify({ name: nomeJogador, score: pontos, game: 'bb' })
     });
 
     const data = await fetchResponse.json();
