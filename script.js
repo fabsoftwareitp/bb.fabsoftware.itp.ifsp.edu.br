@@ -136,7 +136,6 @@ do {
     startButton.addEventListener('click', () => {
         console.log("aSDASDadsa");
         const name = input.value;
-
         const nomeJogador = document.querySelector("#name").value;
         for (const element of rankingData) {
             if (element.name == nomeJogador) {
@@ -144,18 +143,13 @@ do {
                 return;
             }
         }
-
         if (!name) {
-            alert('Insira um nome');
-            document.querySelector(".telaInicial").style.display = "none"; // oculta a tela inicial
-            barras();
+            document.querySelector("#error-msg4").style.display = "block";
             return;
         }
 
         if (name.length > 5) {
-            alert('O nome só pode ter até 5 caracteres');
-            document.querySelector(".telaInicial").style.display = "none"; // oculta a tela inicial
-            barras();
+            document.querySelector("#error-msg3").style.display = "block";
             return;
         }
         if (name.length < 5) {
