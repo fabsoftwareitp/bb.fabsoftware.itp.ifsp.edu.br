@@ -191,10 +191,12 @@ function update() {
 
     context.clearRect(0, 0, board.width, board.height);
 
-    context.fillStyle = "orange";
+    const corBarrinha = document.getElementById('corBarrinha').value;
+    context.fillStyle = corBarrinha;
     context.fillRect(barrinha.x, barrinha.y, barrinha.width, barrinha.height);
 
-    context.fillStyle = "white";
+    const corBolinha = document.getElementById('corBolinha').value;
+    context.fillStyle = corBolinha;
     ball.x += ball.velocityX;
     ball.y += ball.velocityY;
     context.fillRect(ball.x, ball.y, ball.width, ball.height);
