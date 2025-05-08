@@ -129,27 +129,14 @@ function moveBarrinhaPC(e) {
         }
     }
 }
-
-let startButton = document.querySelector('#start');
-let input = document.querySelector('#name');
-function startGame() {
-    document.querySelector("#error-msg").style.display = "none";
-    const nomeJogador = document.querySelector("#name").value;
-    for (const element of rankingData) {
-        if(element.name == nomeJogador) {
-            document.querySelector("#error-msg").style.display = "block";
-            return;
-        }
-    }
-
-    start = true;
-    document.querySelector(".telaInicial").style.display = "none"; // oculta a tela inicial
-    barras();
+    let startButton = document.querySelector('#start');
+do{ 
+    let input = document.querySelector('#name');
 
     startButton.addEventListener('click', () =>{
         console.log("aSDASDadsa");
         const name = input.value;
-        
+    
         if (!name) {
         alert('Insira um nome');
         return;
@@ -159,11 +146,26 @@ function startGame() {
         alert('O nome só pode ter até 5 caracteres');
         return;
         }
-
-        start = true;
-        document.querySelector(".telaInicial").style.display = "none"; // oculta a tela inicial
-        barras();
+        if (name.length <  5){
+            start = true;
+        }
     })
+}while(start)
+
+    document.querySelector(".telaInicial").style.display = "none"; // oculta a tela inicial
+    barras();
+
+function startGame() {
+    document.querySelector(".telaInicial").style.display = "none"; // oculta a tela inicial
+    barras();
+    document.querySelector("#error-msg").style.display = "none";
+    const nomeJogador = document.querySelector("#name").value;
+    for (const element of rankingData) {
+        if(element.name == nomeJogador) {
+            document.querySelector("#error-msg").style.display = "block";
+            return;
+        }
+    }
 
 }
 let gameId;
