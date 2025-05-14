@@ -13,8 +13,8 @@ function createRankingList(rankingJson) {
   rankingList.innerHTML = null;
   let aux = 0;
   rankingJson.sort(function(a, b){return b.score - a.score}); //ordenando
-  const Top10players = rankingJson.slice(0, 10);
-  Top10players.forEach(player => {
+  const top10players = rankingJson.slice(0, 10);
+  top10players.forEach(player => {
     const item = createPlayerElement(player);
     rankingList.appendChild(item);
   });
