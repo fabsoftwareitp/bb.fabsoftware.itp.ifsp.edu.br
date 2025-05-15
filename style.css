@@ -146,25 +146,7 @@ button {
   font-size: 2rem;
 }
 
-#error-msg2 {
-  font-size: 0.8rem;
-  color: rgb(255, 60, 0);
-  display: none;
-}
-
-#error-msg3 {
-  font-size: 0.8rem;
-  color: rgb(255, 60, 0);
-  display: none;
-}
-
-#error-msg4 {
-  font-size: 0.8rem;
-  color: rgb(255, 60, 0);
-  display: none;
-}
-
-#error-msg {
+.error p {
   font-size: 0.8rem;
   color: rgb(255, 60, 0);
   display: none;

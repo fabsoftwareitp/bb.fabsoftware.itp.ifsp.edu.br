@@ -143,7 +143,7 @@ do {
             }
         }
         if (!name) {
-            document.querySelector("#error-msg3").style.display = "block";
+            document.queryselector("#error-msg3").style.display = "block";
             return;
         }
         if (name.includes(" ")){
@@ -155,12 +155,13 @@ do {
             document.querySelector("#error-msg2").style.display = "block";
             return;
         }
-        if (name.length <= 5) {
+        if(name.length < 5){ 
             start = true;
             document.querySelector(".telaInicial").style.display = "none"; // oculta a tela inicial
             barras();
             return;
         }
+
     })
 } while (start)
 
@@ -168,7 +169,9 @@ function startGame() {
     document.querySelector(".telaInicial").style.display = "none"; // oculta a tela inicial
     barras();
     document.querySelector("#error-msg").style.display = "none";
-
+    document.querySelector("#error-msg2").style.display = "none";
+    document.querySelector("#error-msg3").style.display = "none";
+    document.querySelector("#error-msg4").style.display = "none";
 }
 let gameId;
 
