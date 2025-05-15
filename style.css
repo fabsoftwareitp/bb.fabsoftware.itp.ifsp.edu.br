@@ -118,7 +118,7 @@ button {
 }
 .imgStart:hover {
   transform: scale(1.2);
-  background-image: url('./img/button_2.png');
+  background-image: url('./img/button_start2.png');
 }
 
 .niveis {
@@ -170,14 +170,4 @@ button {
 #start img{
   width: 80px;
   height: 80px;
-}
-.imgStart{
-  background-image: url('./img/button_start.webp');
-  background-size: contain;
-  width: 80px;
-  height: 80px;
-}
-.imgStart:hover{
-  transform: scale(1.2);
-  background-image: url('./img/button_2.webp');
 }
