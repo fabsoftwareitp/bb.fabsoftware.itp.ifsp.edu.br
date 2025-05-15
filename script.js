@@ -146,6 +146,10 @@ do {
             document.querySelector("#error-msg3").style.display = "block";
             return;
         }
+        if (name.includes(" ")){
+            document.querySelector("#error-msg4").style.display = "block";
+            return;
+        }
 
         if (name.length > 5) {
             document.querySelector("#error-msg2").style.display = "block";
