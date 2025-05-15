@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,13 +11,13 @@
 
 <body>
 
-        <div class="barra1"></div>
-        <canvas id="board"></canvas>
-        <div class="barra2"></div>
+    <div class="barra1"></div>
+    <canvas id="board"></canvas>
+    <div class="barra2"></div>
 
     <div class="telaInicial">
-        <h1>Brick Breaker</h1> 
-        
+        <h1>Brick Breaker</h1>
+
         <div class="container" id="form">
             <p>Informe um Nome</p>
             <input type="text" id="name" placeholder="Nome">
@@ -24,16 +25,16 @@
             <p id="error-msg2">O nome não pode conter mais que 5 letras</p>
             <p id="error-msg3">O nome está vazio</p>
             <p id="error-msg4">O nome não pode conter espaços</p>
-            <button id="start" onclick="startGame()"><img src="./img/button_start.webp" alt="Jogar"></button>
+            <button id="start" onclick="startGame()"><div class="imgStart"></div></button>
             <br>
             <p>Mudar a cor da bolinha</p>
             <input type="color" id="corBolinha" value="#ffffff">
             <br>
             <p>Mudar a cor da barrinha</p>
             <input type="color" id="corBarrinha" value="#FFA500">
-          </div>
+        </div>
 
-          <div class="rodape">
+        <div class="rodape">
             <p id="p1">Desenvolvido por</p>
             <p>Fábrica de Software</p>
             <img src="img/logo-oficial.png" alt="">
@@ -50,7 +51,7 @@
         </div>
 
         <h2>Ranking:</h2>
-        <ul class="rankingList ranking_container" ></ul>
+        <ul class="rankingList ranking_container"></ul>
 
     </div>
 
@@ -63,4 +64,5 @@
     <script src="script.js"> </script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </body>
+
 </html>

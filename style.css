@@ -53,6 +53,8 @@ h1 {
   text-align: center;
   font-size: 1.2rem;
   color: white;
+  height: 100vh;
+  width: 100vw;
 }
 
 .telaFinal button {
@@ -67,6 +69,9 @@ h1 {
 }
 
 .container {
+  margin-top: auto;
+  margin: auto;
+  width: 500px;
   min-width: 60vw;
   display: flex;
   border-radius: 20px;
@@ -96,14 +101,24 @@ input {
 }
 
 button {
-  padding: 10px 20px;
-  font-size: 20px;
+  height: 50px;
+  position: center;
   background-color: black;
   color: white;
   border: none;
   cursor: pointer;
-  width: 200px;
   font-family: "Press Start 2P", system-ui;
+  cursor: pointer;
+}
+.imgStart {
+  background-image: url('./img/button_start.webp');
+  background-size: contain;
+  width: 80px;
+  height: 80px;
+}
+.imgStart:hover {
+  transform: scale(1.2);
+  background-image: url('./img/button_2.png');
 }
 
 .niveis {
