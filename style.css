@@ -1,146 +1,173 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
-    text-align: center;
-    margin: 0;
-/*     overflow: hidden; */
-    background-color: rgb(0, 0, 0);
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Press Start 2P", system-ui;
+  text-align: center;
+  margin: 0;
+  /*     overflow: hidden; */
+  background-color: rgb(0, 0, 0);
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Press Start 2P", system-ui;
 }
 
-img { width: 50px; margin-top: 5px;}
+img {
+  width: 50px;
+  margin-top: 5px;
+}
 
 .rodape p {
-    text-align: center;
-    margin: 0;
-    font-size: 0.8rem;
+  text-align: center;
+  margin: 0;
+  font-size: 0.8rem;
 }
 
 .rodape {
-    margin-top: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #p1 {
-    color: orangered;
-    line-height: normal;
-    margin-bottom: 10px;
+  color: orangered;
+  line-height: normal;
+  margin-bottom: 10px;
 }
 
 h1 {
-    margin-bottom: 100px;
+  margin-bottom: 100px;
 }
 
 #board {
-    background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
-.telaInicial, .telaFinal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-size: 1.2rem;
-    color: white;
+.telaInicial,
+.telaFinal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 1.2rem;
+  color: white;
+  height: 100vh;
+  width: 100vw;
 }
 
 .telaFinal button {
-    margin-top: 10px;
-    width: 230px;
-    font-size: 1.1rem;
+  background-color: rgb(255, 115, 0);
+  margin-top: 10px;
+  width: 230px;
+  font-size: 1.1rem;
 }
 
-.telaFinal { display: none; }
+.telaFinal {
+  display: none;
+}
 
 .container {
-    min-width: 60vw;
-    display: flex;
-    border-radius: 20px;
-    padding: 2rem 0;
-    gap: 1rem;
-    align-items: center;
-    flex-direction: column;
-  
-    color: white;
-    border: 2px solid white;
+  margin-top: auto;
+  margin: auto;
+  width: 500px;
+  min-width: 60vw;
+  display: flex;
+  border-radius: 20px;
+  padding: 2rem 0;
+  gap: 1rem;
+  align-items: center;
+  flex-direction: column;
 
-    font-size: 1rem;
-    text-align: center;
-  }
+  color: white;
+  border: 2px solid white;
 
-  .container p {
-    margin: 0;
-  }
+  font-size: 1rem;
+  text-align: center;
+}
 
-  input {
-    background-color: rgb(0, 0, 0);
-    padding: 0.5rem;
-    border: 2px solid white;
-    border-radius: 10px;
-    font-family: "Press Start 2P", system-ui;
-    color: white;
-  }
+.container p {
+  margin: 0;
+}
 
-  button {
-    padding: 10px 20px;
-    font-size: 20px;
-    background-color: rgb(255, 60, 0);
-    color: white;
-    border: none;
-    cursor: pointer;
-    width: 200px;
-    font-family: "Press Start 2P", system-ui;
-  }
+input {
+  background-color: rgb(0, 0, 0);
+  padding: 0.5rem;
+  border: 2px solid white;
+  border-radius: 10px;
+  font-family: "Press Start 2P", system-ui;
+  color: white;
+}
 
-  .niveis {
-    z-index: 1;
-    position: absolute;
-    display: none;
-  }
+button {
+  height: 50px;
+  position: center;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-family: "Press Start 2P", system-ui;
+  cursor: pointer;
+}
+.imgStart {
+  background-image: url('./img/button_start.webp');
+  background-size: contain;
+  width: 80px;
+  height: 80px;
+}
+.imgStart:hover {
+  transform: scale(1.2);
+  background-image: url('./img/button_start2.png');
+}
 
-  .niveis p {
-    color: rgba(255, 255, 255, 0.295);
-    font-size: 6rem;
-  }
+.niveis {
+  z-index: 1;
+  position: absolute;
+  display: none;
+}
 
-  .barra1, .barra2 {
-    width: 5px;
-    height: 90vh;
-    background-color: white;
-    display: none;
-  }
+.niveis p {
+  color: rgba(255, 255, 255, 0.295);
+  font-size: 6rem;
+}
 
-  .ranking_container {
-      min-width: 80vw;
-      display: flex;
-      border-radius: 20px;
-      padding: 2rem 0;
-      gap: 2rem;
-      align-items: center;
-      flex-direction: column;
-    
-      background-color: rgb(0, 0, 0);
-      color: white;
-      border-color: 2px solid white;
+.barra1,
+.barra2 {
+  width: 5px;
+  height: 90vh;
+  background-color: white;
+  display: none;
+}
 
-      font-size: 1rem;
-      text-align: center;
-  }
+.ranking_container {
+  min-width: 80vw;
+  display: flex;
+  border-radius: 20px;
+  padding: 2rem 0;
+  gap: 2rem;
+  align-items: center;
+  flex-direction: column;
 
-  #mensagem {
-    color: rgb(255, 60, 0);
-    font-size: 2rem;
-  }
+  background-color: rgb(0, 0, 0);
+  color: white;
+  border-color: 2px solid white;
 
-#error-msg {
+  font-size: 1rem;
+  text-align: center;
+}
+
+#mensagem {
+  color: rgb(255, 60, 0);
+  font-size: 2rem;
+}
+
+.error p {
   font-size: 0.8rem;
   color: rgb(255, 60, 0);
   display: none;
+}
+#start img{
+  width: 80px;
+  height: 80px;
 }
