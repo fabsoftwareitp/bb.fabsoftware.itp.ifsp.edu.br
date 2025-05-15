@@ -155,7 +155,7 @@ do {
             document.querySelector("#error-msg2").style.display = "block";
             return;
         }
-        if(name.length < 5){ 
+        if(name.length <= 5){ 
             start = true;
             document.querySelector(".telaInicial").style.display = "none"; // oculta a tela inicial
             barras();
